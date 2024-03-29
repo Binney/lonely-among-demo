@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5b71lgiqqxf4"]
+[gd_scene load_steps=11 format=3 uid="uid://c5b71lgiqqxf4"]
 
 [ext_resource type="Texture2D" uid="uid://5quqylwbe0wc" path="res://assets/countryside-ring.png" id="1_8uikr"]
 [ext_resource type="Texture2D" uid="uid://pkm8a2rgyeuu" path="res://sprites/tuba0.png" id="1_5633k"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://da1t8nd6g5aya" path="res://roundworld_floor.tscn" id="2_sycap"]
 [ext_resource type="Texture2D" uid="uid://di1dk5hn1coiu" path="res://sprites/tuba2.png" id="3_51mrc"]
 [ext_resource type="Texture2D" uid="uid://dlb4v5f1htk06" path="res://sprites/tuba3.png" id="4_m6q2q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5nfa"]
+size = Vector2(52, 347)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h8e57"]
 animations = [{
@@ -41,6 +44,12 @@ texture = ExtResource("1_8uikr")
 inner_radius = 850
 outer_radius = 900
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(150, 692)
+shape = SubResource("RectangleShape2D_g5nfa")
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(0, 700)
 script = ExtResource("2_ig0y4")
@@ -55,3 +64,7 @@ ignore_rotation = false
 position = Vector2(0, 125)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_0nvn4")
+
+[node name="Polygon2D" type="Polygon2D" parent="CharacterBody2D"]
+color = Color(0.203922, 0.447059, 0.258824, 1)
+polygon = PackedVector2Array(-37, -4, -59, -4, -51, -77)

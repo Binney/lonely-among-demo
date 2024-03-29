@@ -2,20 +2,15 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = 4000.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+var base_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity_normal_distance = 875
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	up_direction = -position.normalized()
+	rotation = position.angle() - PI / 2
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -23,10 +18,16 @@ func _physics_process(delta):
 	if direction:
 		if not $AnimatedSprite2D.is_playing():
 			$AnimatedSprite2D.play()
-		velocity.x = direction * SPEED
+		var x_velocity = direction * SPEED
+		velocity = position.normalized().rotated(-PI / 2) * x_velocity
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		if velocity.x == 0 and $AnimatedSprite2D.is_playing():
+		var x_velocity = 0
+		velocity = position.normalized().rotated(-PI / 2) * x_velocity
+		if $AnimatedSprite2D.is_playing():
 			$AnimatedSprite2D.stop()
+
+	if not is_on_floor():
+		var gravity = base_gravity * position / gravity_normal_distance
+		velocity += gravity * delta
 
 	move_and_slide()
