@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5b71lgiqqxf4"]
+
+[ext_resource type="Texture2D" uid="uid://cnsy2wd1cevy0" path="res://assets/countryside-colour.png" id="1_6o4hu"]
+[ext_resource type="Texture2D" uid="uid://pkm8a2rgyeuu" path="res://sprites/tuba0.png" id="1_5633k"]
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="2_ig0y4"]
+[ext_resource type="Texture2D" uid="uid://4380ffww34el" path="res://sprites/tuba1.png" id="2_pqw7h"]
+[ext_resource type="Texture2D" uid="uid://di1dk5hn1coiu" path="res://sprites/tuba2.png" id="3_51mrc"]
+[ext_resource type="Texture2D" uid="uid://dlb4v5f1htk06" path="res://sprites/tuba3.png" id="4_m6q2q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bni36"]
+size = Vector2(2000, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8e57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5633k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pqw7h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_51mrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_m6q2q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0nvn4"]
+radius = 19.0
+height = 110.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6o4hu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_bni36")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -1002.0
+offset_top = -20.0
+offset_right = 1000.0
+offset_bottom = 18.0
+color = Color(0.407843, 0.411765, 0.760784, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("2_ig0y4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_h8e57")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D/AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 125)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0nvn4")
