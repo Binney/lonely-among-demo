@@ -24,6 +24,7 @@ func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		local_velocity.x = direction * SPEED
+		$AnimatedSprite2D.scale = Vector2(direction, 1)
 		$AnimatedSprite2D.play()
 	else:
 		local_velocity.x = move_toward(local_velocity.x, 0, FLOOR_FRICTION)

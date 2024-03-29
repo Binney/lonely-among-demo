@@ -54,17 +54,14 @@ shape = SubResource("RectangleShape2D_g5nfa")
 position = Vector2(0, 700)
 script = ExtResource("2_ig0y4")
 
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(-1.45519e-10, 0)
+ignore_rotation = false
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_h8e57")
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D/AnimatedSprite2D"]
-ignore_rotation = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 125)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_0nvn4")
-
-[node name="Polygon2D" type="Polygon2D" parent="CharacterBody2D"]
-color = Color(0.203922, 0.447059, 0.258824, 1)
-polygon = PackedVector2Array(-37, -4, -59, -4, -51, -77)
