@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://da1t8nd6g5aya"]
+
+[ext_resource type="Script" path="res://roundworld_floor.gd" id="1_qbxod"]
+
+[node name="RoundworldFloor" type="StaticBody2D"]
+script = ExtResource("1_qbxod")
